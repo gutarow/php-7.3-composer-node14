@@ -60,6 +60,13 @@ RUN apt-get update -y && apt-get install -y \
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
   php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
   rm *
+#NODE
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+  apt -y install nodejs gcc g++ make
+
+RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+  sudo apt update && sudo apt install yarn
 
 # Apache + xdebug configuration
 RUN { \
