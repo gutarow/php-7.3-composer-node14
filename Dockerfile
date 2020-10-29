@@ -64,9 +64,9 @@ RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
   apt -y install nodejs gcc g++ make
 
-RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
-  sudo apt update && sudo apt install yarn
+RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+  apt update && apt -y install yarn
 
 # Apache + xdebug configuration
 RUN { \
